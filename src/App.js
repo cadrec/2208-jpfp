@@ -12,7 +12,10 @@ function App(){
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
 
-    
+    useEffect(() => {
+        dispatch(getCampuses());
+        dispatch(getStudents());
+      }, []);
 
     return(
         <>
