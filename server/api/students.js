@@ -37,7 +37,6 @@ router.post('/', async (req, res, next) => {
         next(err);
     }
 })
-//put
 //delete
 router.delete('/:studentId', async (req, res, next) => {
     try{
@@ -53,5 +52,21 @@ router.delete('/:studentId', async (req, res, next) => {
         }
     } catch (err) {
         next(err);
+    }
+})
+//put
+//https://www.tabnine.com/code/javascript/functions/express/Router/put
+router.put('/:studentId', (req, res, next) => {
+    try{
+        const student = await.Student.findByPk(req.params.studentId);
+        if(!student){
+            let err = new Error ('Student id is not found');
+            err.status(404);
+            next(err);
+        }
+        else{
+            student.id = await student.update(req.body);
+            res.send(student.id)
+        }
     }
 })
